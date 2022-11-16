@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Cartelera
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false">
+
+  <div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
+    <div class="container">
+      <div class="row align-items-center">
+        
+        <!-- register -->
+         <div class="col-lg-6 px-lg-4">
+          <div class="card">
+            <div class="card-header px-lg-5">
+              <div class="card-heading text-primary">CINE</div>
+            </div>
+            <div class="card-body p-lg-5">
+              <h3 class="mb-4">Registra tu critica</h3>
+              <p class="text-muted text-sm mb-5">Aqui puedes agregar una critica de algun corte cinematografico</p>
+              <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> -->
+                <div class="form-floating mb-3">
+                  <input id="username" type="text" placeholder="Username" formControlName="firstname" class="form-control"  />
+                 
+                  <!-- <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required">Name is required</div>
+                  </div> -->
+               
+                  <label for="username">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input  id="floatingInput" type="text" placeholder="name@example.com" formControlName="email" class="form-control" />
+                  <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                     <div *ngIf="f.email.errors.required">Email is required</div>
+                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div> -->
+               
+                  <label for="floatingInput">Correo </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input id="floatingPassword" type="password" placeholder="Password" formControlName="password" class="form-control"  />
+                  <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div> -->
+                  <label for="floatingPassword">Comentario</label>
+                </div>
+               
+                <div class="form-group">
+                  
+                  <button class="btn btn-primary" id="regidter" type="submit" name="registerSubmit">Registrar</button>
+                </div>
+              <!-- </form> -->
+            </div>
+         
+          </div>
+        </div>
+       <div class="col-lg-6 col-xl-5 ms-xl-auto px-lg-4 text-center text-primary"><img class="img-fluid mb-4 mt-4" width="200" src="https://www.metroworldnews.com/resizer/Tl9Ql96zfZO_Xmc8K5iJKLjgP0c=/800x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/metroworldnews/OE7QM2BSAVDHPKX6N5RQLASXFI.jpg">
+          <h1 class="mb-4">Agradecemos tus comentarios </h1>
+          <p class="lead text-muted">Dejanos tu comentario sobre la pelicula que mas te guste!!.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
