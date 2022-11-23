@@ -1,0 +1,39 @@
+<!-- student-list.page.html -->
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Lista de todos los productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <!-- <th scope="col">Address</th> -->
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of studentsData">
+        <td>{{ item.product_id }}</td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.product_price }}</td>
+        <!-- <td>{{ item.address }}</td> -->
+        <td style="display: flex">
+          <ion-button color="warning" size="small" routerLink='/productos-edit/{{item.id}}'>
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" size="small" (click)="delete(item)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ion-button [routerLink]="['/productos-create']">
+    Agregar Productos nuevos
+  </ion-button>
+</ion-content>

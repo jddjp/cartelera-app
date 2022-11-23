@@ -12,10 +12,10 @@ export class CrudService {
   //add new user    
   public adduser(userData:any)
   {
-  //   return this.http.post('http://localhost/users.php/'
-  // , userData).subscribe((res: Response) => {
-  //   console.log(res);
-  // });
+    //  return this.http.post('http://localhost/users.php/'
+    //    ,userData).subscribe(function (res: Response) {
+    //      console.log(res);
+    //    });
   }
   
 }
