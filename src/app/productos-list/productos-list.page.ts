@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DomSanitizer } from '@angular/platform-browser';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -10,8 +10,9 @@ import { ApiService } from '../services/api.service';
 export class ProductosListPage implements OnInit {
 
   studentsData: any;
-
+  imageSource:any;
   constructor(
+    private sanitizer: DomSanitizer,
     public apiService: ApiService
   ) {
     this.studentsData = [];
@@ -19,6 +20,7 @@ export class ProductosListPage implements OnInit {
 
   ngOnInit() {
     // this.getAllStudents();
+   
   }
 
   ionViewWillEnter() {
@@ -31,10 +33,12 @@ export class ProductosListPage implements OnInit {
     //Get saved list of students
     this.apiService.getList().subscribe(response => {
       console.log(response);
+    
       this.studentsData = response;
     })
   }
 
+ 
 
   delete(item:any) {
     //Delete item in Student data

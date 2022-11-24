@@ -1,39 +1,37 @@
 <!-- student-list.page.html -->
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-title>Lista de todos los productos</ion-title>
+    <ion-title>Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Precio</th>
-        <!-- <th scope="col">Address</th> -->
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of studentsData">
-        <td>{{ item.product_id }}</td>
-        <td>{{ item.product_name }}</td>
-        <td>{{ item.product_price }}</td>
-        <!-- <td>{{ item.address }}</td> -->
-        <td style="display: flex">
-          <ion-button color="warning" size="small" routerLink='/productos-edit/{{item.id}}'>
-            <ion-icon name="create"></ion-icon>
-          </ion-button>
-          <ion-button color="danger" size="small" (click)="delete(item)">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  
   <ion-button [routerLink]="['/productos-create']">
     Agregar Productos nuevos
   </ion-button>
+
+  <ion-card *ngFor="let item of studentsData"  >
+    
+    <!-- <img alt="Silhouette of mountains" src="{{ item.imagen }}" />
+    <img [src]="'data:image/jpg;base64,'+item.imagen" style="height:50px;width:50px" /> -->
+    <!-- <img style='display:block; width:100px;height:100px;' id='base64image'
+    src='data:image/jpeg;base64,"{{ item.imagen }}"' /> -->
+    <ion-card-header>
+      <ion-card-title>{{ item.product_name }}</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+    <ion-button color="warning" size="small" routerLink='/productos-edit/{{item.id}}'>
+      <ion-icon name="create"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" size="small" (click)="delete(item)">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </ion-card>
+
 </ion-content>
+

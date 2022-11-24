@@ -1,34 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>productos-create</ion-title>
+    <ion-title>Registrar producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
-</ion-content>
-
-<!-- student-create.html -->
-<ion-header>
-  <ion-toolbar color="tertiary">
-    <ion-title>Create Student</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content class="ion-padding">
 
   <ion-item>
-    <ion-label>Name</ion-label>
-    <ion-input [(ngModel)]="data.productname" placeholder="Enter Name"></ion-input>
+    <ion-label>Nombre</ion-label>
+    <ion-input [(ngModel)]="data.productname" placeholder="Agregar el nombre"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Age</ion-label>
-    <ion-input [(ngModel)]="data.productprice" placeholder="Enter Age"></ion-input>
+    <ion-label>Precio</ion-label>
+    <ion-input [(ngModel)]="data.productprice" placeholder="Agregar el precio"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-button (click)="submitForm()">Add
+    <ion-button (click)="submitForm()">Registrar
     </ion-button>
   </ion-item>
 
