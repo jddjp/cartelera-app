@@ -4,23 +4,40 @@
   </ion-toolbar>
 </ion-header>
 
+ 
 
 
 <ion-content class="ion-padding">
-
   <ion-item>
+    <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+  
+    <input 
+    type="file" 
+    [(ngModel)]="currentInput"
+    (change)="uploadFile($event)"
+  >
+  </ion-item>
+
+  
+  <ion-item>
+
     <ion-label>Nombre</ion-label>
-    <ion-input [(ngModel)]="data.productname" placeholder="Agregar el nombre"></ion-input>
+    <ion-input [(ngModel)]="data.product_name" placeholder="Agregar el nombre"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Precio</ion-label>
-    <ion-input [(ngModel)]="data.productprice" placeholder="Agregar el precio"></ion-input>
+    <ion-input [(ngModel)]="data.product_price" placeholder="Agregar el precio"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Imagen</ion-label>
+    <ion-input ></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-button (click)="submitForm()">Registrar
     </ion-button>
   </ion-item>
+
 
 </ion-content> 

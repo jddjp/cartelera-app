@@ -20,11 +20,12 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
-    IonicModule
+    IonicModule,
   ],
   providers: [
     // StatusBar,
     // SplashScreen,
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,9 +1,28 @@
+<!-- student-edit.page.html -->
 <ion-header>
-  <ion-toolbar>
-    <ion-title>productos-edit</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title>Editar producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <img src="data:image/png;base64, {{data.imagen}}"   style="height:200px;width:200px" />
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input [(ngModel)]="data.product_name" placeholder="Agregar el nombre" ></ion-input>
+  </ion-item>
 
+  <ion-item>
+    <ion-label>Precio</ion-label>
+    <ion-input [(ngModel)]="data.product_price" placeholder="Agregar el precio"></ion-input>
+  </ion-item>
+
+
+
+  <ion-button (click)="update()" color="success" size="small">
+    Update
+  </ion-button>
+  <ion-button [routerLink]="[ '/productos-list']" color="danger" size="small">
+    Cancel
+  </ion-button>
 </ion-content>

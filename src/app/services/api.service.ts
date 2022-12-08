@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Productos } from '../models/productos';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { responseModel } from '../models/response';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,13 @@ export class ApiService {
 
   // Http Options
   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+    headers: new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods':'GET,POST,OPTIONS',
+        'Access-Control-Allow-Headers':'Content-Type'
+      })
   }
 
   // Handle API errors
@@ -41,9 +46,10 @@ export class ApiService {
 
 
   // Create a new item
-  createItem(item:any): Observable<Productos> {
+  createItem(item: Productos): Observable<Productos> {
+    console.log(JSON.stringify(item).toString())
     return this.http
-      .post<Productos>(this.base_path, JSON.stringify(item), this.httpOptions)
+      .post<Productos>('http://localhost/CodeIgniter4/products', JSON.stringify(item))
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -51,9 +57,9 @@ export class ApiService {
   }
 
   // Get single productos data by ID
-  getItem(productid: any): Observable<Productos> {
+  getItem(productid: string): Observable<Productos> {
     return this.http
-      .get<Productos>(this.base_path + '/' + productid)
+      .get<Productos>(this.base_path + '/products/' + productid)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -63,7 +69,7 @@ export class ApiService {
   // Get productoss data
   getList(): Observable<Productos> {
     return this.http
-      .get<Productos>(this.base_path+'/products')
+      .get<Productos>(this.base_path + '/products')
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -71,9 +77,9 @@ export class ApiService {
   }
 
   // Update item by id
-  updateItem(id:any, item:any): Observable<Productos> {
+  updateItem(id: any, item: any): Observable<Productos> {
     return this.http
-      .put<Productos>(this.base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .put<Productos>(this.base_path + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -81,9 +87,9 @@ export class ApiService {
   }
 
   // Delete item by id
-  deleteItem(productid: any) {
+  deleteItem(productid: string) {
     return this.http
-      .delete<Productos>(this.base_path + '/' + productid, this.httpOptions)
+      .delete<responseModel>(this.base_path + '/products/' + 13)
       .pipe(
         retry(2),
         catchError(this.handleError)

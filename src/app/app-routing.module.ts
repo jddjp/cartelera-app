@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./productos-create/productos-create.module').then(m => m.ProductosCreatePageModule)
   },
   {
-    path: 'productos-edit',
+    path: 'productos-edit/:product_id',
     loadChildren: () => import('./productos-edit/productos-edit.module').then(m => m.ProductosEditPageModule)
   },
   {
@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: 'productos-detail',
     loadChildren: () => import('./productos-detail/productos-detail.module').then(m => m.ProductosDetailPageModule)
-  },  {
+  },
+  {
     path: 'productos-create',
     loadChildren: () => import('./productos-create/productos-create.module').then( m => m.ProductosCreatePageModule)
   },
