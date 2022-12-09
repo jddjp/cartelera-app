@@ -7,6 +7,12 @@
 
 <ion-content class="ion-padding">
   <img src="data:image/png;base64, {{data.imagen}}"   style="height:200px;width:200px" />
+  
+  <ion-item>
+    <ion-label>Codigo del</ion-label>
+    <ion-input [(ngModel)]="data.product_id" placeholder="Agregar el nombre" ></ion-input>
+  </ion-item>
+
   <ion-item>
     <ion-label>Nombre</ion-label>
     <ion-input [(ngModel)]="data.product_name" placeholder="Agregar el nombre" ></ion-input>
@@ -16,7 +22,10 @@
     <ion-label>Precio</ion-label>
     <ion-input [(ngModel)]="data.product_price" placeholder="Agregar el precio"></ion-input>
   </ion-item>
-
+  <ion-item>
+    <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+    <input  type="file"  [(ngModel)]="currentInput"(change)="uploadFile($event)">
+  </ion-item>
 
 
   <ion-button (click)="update()" color="success" size="small">

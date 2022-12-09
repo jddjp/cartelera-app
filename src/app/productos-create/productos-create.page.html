@@ -9,13 +9,8 @@
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+    <img src="data:image/png;base64, {{this.data.imagen}}" alt="Imagen"  style="height:200px;width:200px" />
   
-    <input 
-    type="file" 
-    [(ngModel)]="currentInput"
-    (change)="uploadFile($event)"
-  >
   </ion-item>
 
   
@@ -27,14 +22,17 @@
 
   <ion-item>
     <ion-label>Precio</ion-label>
-    <ion-input [(ngModel)]="data.product_price" placeholder="Agregar el precio"></ion-input>
+    <ion-input type="number" [(ngModel)]="data.product_price" placeholder="Agregar el precio"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Imagen</ion-label>
-    <ion-input ></ion-input>
+ 
+  
+    <input  type="file"  [(ngModel)]="currentInput"(change)="uploadFile($event)"
+>
   </ion-item>
 
   <ion-item>
+    <ion-icon lazy="true" slot="start" name="image"></ion-icon>
     <ion-button (click)="submitForm()">Registrar
     </ion-button>
   </ion-item>

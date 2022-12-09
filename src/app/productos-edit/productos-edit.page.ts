@@ -8,10 +8,11 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./productos-edit.page.scss'],
 })
 export class ProductosEditPage implements OnInit {
-
-
+  imagedata!:any;
   product_id: number = 1;
   data: Productos;
+  currentInput:any
+
 
   constructor(  
     public activatedRoute: ActivatedRoute,
@@ -34,9 +35,23 @@ export class ProductosEditPage implements OnInit {
   }
 
   update() {
-    this.apiService.updateItem(this.product_id, this.data).subscribe(response => {
-      this.router.navigate(['productos-list']);
-    })
+    this.apiService.updateItem(this.data);
   }
+ 
+  uploadFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+        console.log(target.files[0].name);
+        const reader = new FileReader();
+    reader.readAsDataURL(target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result)
+      
+      this.imagedata=reader.result?.toString()
+      this.data.imagen= this.imagedata.replace(/^data:image\/[a-z]+;base64,/, "");
+        console.log(reader.result);
+    };
+    }
+}
 
 }

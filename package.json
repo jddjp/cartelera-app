@@ -30,6 +30,7 @@
     "@ionic/angular": "^6.1.9",
     "@ionic/pwa-elements": "^3.1.1",
     "add": "^2.0.6",
+    "axios": "^1.2.1",
     "bootstrap": "^5.2.2",
     "cordova": "^11.0.0",
     "cordova-plugin-advanced-http": "^3.3.1",

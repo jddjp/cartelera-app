@@ -40,7 +40,7 @@ export class ProductosCreatePage implements OnInit {
       console.log(reader.result)
       
       this.imagedata=reader.result?.toString()
-      this.data.imagen= this.imagedata;
+      this.data.imagen= this.imagedata.replace(/^data:image\/[a-z]+;base64,/, "");
         console.log(reader.result);
     };
     }
@@ -53,6 +53,7 @@ export class ProductosCreatePage implements OnInit {
 
     
     this.apiService.createItem(this.data).subscribe((response) => {
+      console.log(response)
       this.router.navigate(['productos-list']);
     });
 
