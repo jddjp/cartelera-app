@@ -36,6 +36,7 @@ export class ProductosEditPage implements OnInit {
 
   update() {
     this.apiService.updateItem(this.data);
+    this.router.navigate(['productos-list']);
   }
  
   uploadFile(event: Event) {

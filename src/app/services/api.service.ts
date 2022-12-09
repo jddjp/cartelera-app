@@ -15,6 +15,7 @@ export class ApiService {
 
   // API path
   base_path = 'http://localhost/CodeIgniter4';
+  postId: any;
 
   
   constructor(private http: HttpClient) { }
@@ -25,19 +26,22 @@ export class ApiService {
   };
 
   // Handle API errors
-  handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-  
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-  
-      // TODO: better job of transforming error for user consumption
-    
-  
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
 
 
   // Create a new item
@@ -47,7 +51,7 @@ export class ApiService {
       .post<Productos>('http://localhost/CodeIgniter4/products', JSON.stringify(item))
       .pipe(
         retry(2),
-        catchError(this.handleError<Productos>('create'))
+        catchError(this.handleError)
       )
   }
 
@@ -57,7 +61,7 @@ export class ApiService {
       .get<Productos>(this.base_path + '/products/' + productid)
       .pipe(
         retry(2),
-        catchError(this.handleError<Productos>('get'))
+        catchError(this.handleError)
       )
   }
 
@@ -67,38 +71,32 @@ export class ApiService {
       .get<Productos>(this.base_path + '/products')
       .pipe(
         retry(2),
-        catchError(this.handleError<Productos>('get id'))
+        catchError(this.handleError)
       )
   }
 
   // Update item by id
-  updateItem(item: Productos):Observable<Productos>{
-    return this.http.put<Productos>('http://localhost/CodeIgniter4/products/1', JSON.stringify(item))
-    .pipe(
-      retry(2),
-      catchError(this.handleError<Productos>('create'))
-    )
+  updateItem(item: Productos){
+    console.log(JSON.stringify(item).toString())
+    console.log(this.base_path + '/products/' + item.product_id, JSON.stringify(item))
+    console.log(this.base_path + '/products/' + item.product_id)
+    return this.http
+      .put<Productos>(this.base_path + '/products/' + item.product_id, JSON.stringify(item))
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
   // Delete item by id
-  deleteItem(productid: string){
-    var axios = require('axios');
-
-    var config = {
-      method: 'delete',
-      url: 'http://localhost/CodeIgniter4/products/3',
-      headers: { }
-    };
-    
-    axios(config)
-    .then(function (response: { data: any; }) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    });
-    
-  }
-
-
+  deleteItem(productid: string): Observable<responseModel>{
+    console.log("=>DELETE:"+this.base_path + '/products/' + productid)
+      return this.http
+        .delete<responseModel>(this.base_path + '/products/' + productid)
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
+  
 }

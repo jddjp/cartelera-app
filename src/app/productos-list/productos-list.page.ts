@@ -42,8 +42,12 @@ export class ProductosListPage implements OnInit {
 
   delete(item:any) {
     console.log("==>"+item)
-    //Delete item in Student data
-    this.apiService.deleteItem(item.id)
+    this.apiService.deleteItem(item).subscribe(Response => {
+      
+      //Update list after delete is successful
+      this.getAllStudents();
+    });
+    
   }
 
 }
